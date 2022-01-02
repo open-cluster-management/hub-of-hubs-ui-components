@@ -3,10 +3,10 @@
     "version": "v0.1.0",
     "description": "UI component library for open cluster management",
     "license": "Apache-2.0",
-    "main": "src/index.js",
-    "types": "src/typings.d.ts",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
     "files": [
-        "src"
+        "lib"
     ],
     "scripts": {
         "build": "tsc && cp -R src/assets lib/ && copyfiles -u 1 src/**/*.css lib",
