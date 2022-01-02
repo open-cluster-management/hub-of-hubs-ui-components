@@ -39,7 +39,7 @@ import { AcmIcon, AcmIconVariant } from '../AcmIcons/AcmIcons'
 import logo from '../assets/RHACM-Logo.svg'
 
 export type HubOfHubsHeaderProps = {
-    route: AcmRoute
+    route: HubOfHubsRoute
 } & Omit<PageProps, 'sidebar'> &
     Omit<PageProps, 'header'>
 
