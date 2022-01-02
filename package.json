@@ -205,9 +205,5 @@
             "@babel/preset-env",
             "@babel/preset-react"
         ]
-    },
-    "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/"
     }
 }
