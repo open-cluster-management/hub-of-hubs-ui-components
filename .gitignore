@@ -1,7 +1,6 @@
 # Copyright Contributors to the Open Cluster Management project
 
 node_modules/
-lib/
 storybook-static/
 coverage/
 test-report.xml
