@@ -328,6 +328,7 @@ const useStyles = makeStyles({
 })
 
 export enum HubOfHubsRoute {
+    Welcome = '/multicloud/welcome',
     Clusters = '/multicloud/clusters',
     Governance = '/multicloud/policies',
 }
@@ -420,6 +421,15 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
             </div>
             <NavItemSeparator style={switcherExists ? {} : { display: 'none' }} />
             <NavList className={classes.list}>
+	         <NavExpandable
+                    title="Home"
+                    isActive={route === HubOfHubsRoute.Welcome}
+                    isExpanded={true}
+                >
+                    <NavItem isActive={route === HubOfHubsRoute.Welcome} to={HubOfHubsRoute.Welcome}>
+                        Welcome
+                    </NavItem>
+                </NavExpandable>
                 <NavExpandable
                     title="Infrastructure"
                     isActive={

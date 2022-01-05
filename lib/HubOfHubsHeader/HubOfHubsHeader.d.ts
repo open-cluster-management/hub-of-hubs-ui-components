@@ -4,6 +4,7 @@ export declare type HubOfHubsHeaderProps = {
     route: HubOfHubsRoute;
 } & Omit<PageProps, 'sidebar'> & Omit<PageProps, 'header'>;
 export declare enum HubOfHubsRoute {
+    Welcome = "/multicloud/welcome",
     Clusters = "/multicloud/clusters",
     Governance = "/multicloud/policies"
 }
