@@ -332,6 +332,7 @@ export enum HubOfHubsRoute {
     Clusters = '/multicloud/hierarchy-clusters',
     Governance = '/multicloud/policies',
     Credentials = '/multicloud/credentials',
+    Automation = '/multicloud/ansible-automations',
 }
 
 function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean; postClick?: () => void }) {
@@ -440,6 +441,9 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                 >
                     <NavItem isActive={route === HubOfHubsRoute.Clusters} to={HubOfHubsRoute.Clusters}>
                         {isConsoleRoute ? <Link to={HubOfHubsRoute.Clusters}>Clusters</Link> : 'Clusters'}
+                    </NavItem>
+                    <NavItem isActive={route === HubOfHubsRoute.Automation} to={HubOfHubsRoute.Automation}>
+                        {isConsoleRoute ? <Link to={HubOfHubsRoute.Automation}>Automation</Link> : 'Automation'}
                     </NavItem>
                 </NavExpandable>
                 <NavItem isActive={route === HubOfHubsRoute.Governance} to={HubOfHubsRoute.Governance}>

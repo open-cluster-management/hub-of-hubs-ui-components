@@ -7,6 +7,7 @@ export declare enum HubOfHubsRoute {
     Welcome = "/multicloud/welcome",
     Clusters = "/multicloud/hierarchy-clusters",
     Governance = "/multicloud/policies",
-    Credentials = "/multicloud/credentials"
+    Credentials = "/multicloud/credentials",
+    Automation = "/multicloud/ansible-automations"
 }
 export declare function HubOfHubsHeader(props: HubOfHubsHeaderProps): JSX.Element;
