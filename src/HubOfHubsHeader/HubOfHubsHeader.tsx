@@ -329,10 +329,10 @@ const useStyles = makeStyles({
 
 export enum HubOfHubsRoute {
     Welcome = '/multicloud/welcome',
-    Clusters = '/multicloud/hierarchy-clusters',
+    Clusters = '/multicloud/clusters',
+    HubClusters = '/multicloud/hierarchy-clusters',
     Governance = '/multicloud/policies',
     Credentials = '/multicloud/credentials',
-    Automation = '/multicloud/ansible-automations',
 }
 
 function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean; postClick?: () => void }) {
@@ -363,6 +363,7 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
     const isConsoleRoute = useMemo(() => {
         switch (route) {
             case HubOfHubsRoute.Clusters:
+            case HubOfHubsRoute.HubClusters:
                 return true
         }
         return false
@@ -435,15 +436,16 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                 <NavExpandable
                     title="Infrastructure"
                     isActive={
-                        route === HubOfHubsRoute.Clusters
+                        route === HubOfHubsRoute.Clusters ||
+                        route === HubOfHubsRoute.HubClusters
                     }
                     isExpanded={true}
                 >
                     <NavItem isActive={route === HubOfHubsRoute.Clusters} to={HubOfHubsRoute.Clusters}>
                         {isConsoleRoute ? <Link to={HubOfHubsRoute.Clusters}>Clusters</Link> : 'Clusters'}
                     </NavItem>
-                    <NavItem isActive={route === HubOfHubsRoute.Automation} to={HubOfHubsRoute.Automation}>
-                        {isConsoleRoute ? <Link to={HubOfHubsRoute.Automation}>Automation</Link> : 'Automation'}
+                    <NavItem isActive={route === HubOfHubsRoute.HubClusters} to={HubOfHubsRoute.HubClusters}>
+                        {isConsoleRoute ? <Link to={HubOfHubsRoute.HubClusters}>HubClusters</Link> : 'Hub Clusters'}
                     </NavItem>
                 </NavExpandable>
                 <NavItem isActive={route === HubOfHubsRoute.Governance} to={HubOfHubsRoute.Governance}>
