@@ -445,7 +445,7 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                         {isConsoleRoute ? <Link to={HubOfHubsRoute.Clusters}>Clusters</Link> : 'Clusters'}
                     </NavItem>
                     <NavItem isActive={route === HubOfHubsRoute.HubClusters} to={HubOfHubsRoute.HubClusters}>
-                        {isConsoleRoute ? <Link to={HubOfHubsRoute.HubClusters}>HubClusters</Link> : 'Hub Clusters'}
+                        {isConsoleRoute ? <Link to={HubOfHubsRoute.HubClusters}>Hub Clusters</Link> : 'Hub Clusters'}
                     </NavItem>
                 </NavExpandable>
                 <NavItem isActive={route === HubOfHubsRoute.Governance} to={HubOfHubsRoute.Governance}>
