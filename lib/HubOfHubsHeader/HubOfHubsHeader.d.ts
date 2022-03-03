@@ -6,6 +6,8 @@ export declare type HubOfHubsHeaderProps = {
 export declare enum HubOfHubsRoute {
     Welcome = "/multicloud/welcome",
     Clusters = "/multicloud/clusters",
-    Governance = "/multicloud/policies"
+    HubClusters = "/multicloud/hierarchy-clusters",
+    Governance = "/multicloud/policies",
+    Credentials = "/multicloud/credentials"
 }
 export declare function HubOfHubsHeader(props: HubOfHubsHeaderProps): JSX.Element;

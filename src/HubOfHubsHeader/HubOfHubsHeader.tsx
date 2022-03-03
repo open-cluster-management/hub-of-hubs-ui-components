@@ -330,7 +330,9 @@ const useStyles = makeStyles({
 export enum HubOfHubsRoute {
     Welcome = '/multicloud/welcome',
     Clusters = '/multicloud/clusters',
+    HubClusters = '/multicloud/hierarchy-clusters',
     Governance = '/multicloud/policies',
+    Credentials = '/multicloud/credentials',
 }
 
 function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean; postClick?: () => void }) {
@@ -361,6 +363,7 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
     const isConsoleRoute = useMemo(() => {
         switch (route) {
             case HubOfHubsRoute.Clusters:
+            case HubOfHubsRoute.HubClusters:
                 return true
         }
         return false
@@ -433,16 +436,23 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                 <NavExpandable
                     title="Infrastructure"
                     isActive={
-                        route === HubOfHubsRoute.Clusters
+                        route === HubOfHubsRoute.Clusters ||
+                        route === HubOfHubsRoute.HubClusters
                     }
                     isExpanded={true}
                 >
                     <NavItem isActive={route === HubOfHubsRoute.Clusters} to={HubOfHubsRoute.Clusters}>
                         {isConsoleRoute ? <Link to={HubOfHubsRoute.Clusters}>Clusters</Link> : 'Clusters'}
                     </NavItem>
+                    <NavItem isActive={route === HubOfHubsRoute.HubClusters} to={HubOfHubsRoute.HubClusters}>
+                        {isConsoleRoute ? <Link to={HubOfHubsRoute.HubClusters}>Hub Clusters</Link> : 'Hub Clusters'}
+                    </NavItem>
                 </NavExpandable>
                 <NavItem isActive={route === HubOfHubsRoute.Governance} to={HubOfHubsRoute.Governance}>
                     Governance
+                </NavItem>
+                <NavItem isActive={route === HubOfHubsRoute.Credentials} to={HubOfHubsRoute.Credentials}>
+                    Credentials
                 </NavItem>
             </NavList>
         </Nav>
