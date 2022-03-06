@@ -29,10 +29,10 @@ React shared UI component library for open cluster management.
    npm test
    ```
 
-3. Start the storybook
+3. Build the package
 
    ```
-   npm start
+   npm build
    ```
 
 ## Adding a new component
