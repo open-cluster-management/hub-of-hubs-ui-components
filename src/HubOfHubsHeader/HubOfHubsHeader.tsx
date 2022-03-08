@@ -339,7 +339,15 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
     const { route, showSwitcher } = props
     const classes = useStyles()
     const [switcherIsOpen, setSwitcherOpen] = useState(false)
-    const [infrastructureIsOpen, setInfrastructureOpen] = useState(false)
+    const [infrastructureIsOpen, setInfrastructureOpen] = useState(window?.localStorage?.getItem('isInfrastructureOpen') !== 'false')
+    useEffect(() => {
+        if (window?.localStorage?.getItem('isInfrastructureOpen') !== 'false') {
+            setInfrastructureOpen(true)
+        } else {
+            setInfrastructureOpen(false)
+        }
+    })
+
     const switcherExists = showSwitcher
     const iconStyles: CSSProperties = { paddingRight: '7px' }
     const acmIconStyle: CSSProperties = {
@@ -395,7 +403,7 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                         </DropdownToggle>
                     }
                     dropdownItems={[
-                        <DropdownItem onClick={() => {setSwitcherOpen(false); setInfrastructureOpen(false)}} key={'acm'}>
+                        <DropdownItem onClick={() => {setSwitcherOpen(false); window?.localStorage?.setItem('isInfrastructureOpen', 'false'); setInfrastructureOpen(false)}} key={'acm'}>
                             <Title headingLevel="h2" size="md">
                                 <span className="oc-nav-header__icon">
                                     <ACMIcon></ACMIcon>
@@ -403,7 +411,7 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                                 <span style={textStyles}>Federated Management</span>
                             </Title>
                         </DropdownItem>,
-                        <DropdownItem onClick={() => {setSwitcherOpen(false); setInfrastructureOpen(true)}} key={'acm-inf'}>
+                        <DropdownItem onClick={() => {setSwitcherOpen(false); window?.localStorage?.setItem('isInfrastructureOpen', 'true'); setInfrastructureOpen(true)}} key={'acm-inf'}>
                             <Title headingLevel="h2" size="md">
                                 <span className="oc-nav-header__icon">
                                     <ACMIcon></ACMIcon>
@@ -451,7 +459,7 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                     isExpanded={true}
                 >
                     {infrastructureIsOpen ?
-                        <NavItem isActive={route === HubOfHubsRoute.HubClusters} to={HubOfHubsRoute.HubClusters}>
+                        <NavItem isActive={route !== HubOfHubsRoute.Clusters && route !== HubOfHubsRoute.Credentials && route !== HubOfHubsRoute.Governance && route !== HubOfHubsRoute.Welcome } to={HubOfHubsRoute.HubClusters}>
                             {isConsoleRoute ? <Link to={HubOfHubsRoute.HubClusters}>Hub Clusters</Link> : 'Hub Clusters'}
                         </NavItem>
                         :
@@ -463,9 +471,11 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                 <NavItem isActive={route === HubOfHubsRoute.Governance} to={HubOfHubsRoute.Governance}>
                     Governance
                 </NavItem>
-                <NavItem isActive={route === HubOfHubsRoute.Credentials} to={HubOfHubsRoute.Credentials}>
-                    Credentials
-                </NavItem>
+                {infrastructureIsOpen &&
+                    <NavItem isActive={route === HubOfHubsRoute.Credentials} to={HubOfHubsRoute.Credentials}>
+                        Credentials
+                    </NavItem>
+                }
             </NavList>
         </Nav>
     )
