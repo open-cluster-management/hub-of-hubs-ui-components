@@ -339,9 +339,9 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
     const { route, showSwitcher } = props
     const classes = useStyles()
     const [switcherIsOpen, setSwitcherOpen] = useState(false)
-    const [infrastructureIsOpen, setInfrastructureOpen] = useState(window?.localStorage?.getItem('isInfrastructureOpen') !== 'false')
+    const [infrastructureIsOpen, setInfrastructureOpen] = useState(window?.localStorage?.getItem('isInfrastructureOpen') === 'true')
     useEffect(() => {
-        if (window?.localStorage?.getItem('isInfrastructureOpen') !== 'false') {
+        if (window?.localStorage?.getItem('isInfrastructureOpen') === 'true') {
             setInfrastructureOpen(true)
         } else {
             setInfrastructureOpen(false)
