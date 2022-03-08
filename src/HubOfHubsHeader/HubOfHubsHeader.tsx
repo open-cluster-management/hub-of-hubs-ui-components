@@ -339,6 +339,7 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
     const { route, showSwitcher } = props
     const classes = useStyles()
     const [switcherIsOpen, setSwitcherOpen] = useState(false)
+    const [infrastructureIsOpen, setInfrastructureOpen] = useState(false)
     const switcherExists = showSwitcher
     const iconStyles: CSSProperties = { paddingRight: '7px' }
     const acmIconStyle: CSSProperties = {
@@ -394,12 +395,20 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                         </DropdownToggle>
                     }
                     dropdownItems={[
-                        <DropdownItem onClick={() => setSwitcherOpen(false)} key={'acm'}>
+                        <DropdownItem onClick={() => {setSwitcherOpen(false); setInfrastructureOpen(false)}} key={'acm'}>
                             <Title headingLevel="h2" size="md">
                                 <span className="oc-nav-header__icon">
                                     <ACMIcon></ACMIcon>
                                 </span>
-                                <span style={textStyles}>Advanced Cluster Management</span>
+                                <span style={textStyles}>Federated Management</span>
+                            </Title>
+                        </DropdownItem>,
+                        <DropdownItem onClick={() => {setSwitcherOpen(false); setInfrastructureOpen(true)}} key={'acm-inf'}>
+                            <Title headingLevel="h2" size="md">
+                                <span className="oc-nav-header__icon">
+                                    <ACMIcon></ACMIcon>
+                                </span>
+                                <span style={textStyles}>Infrastructure Management</span>
                             </Title>
                         </DropdownItem>,
                         <DropdownItem onClick={() => launchToOCP('?perspective=admin')} key={'administrator'}>
@@ -441,12 +450,15 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                     }
                     isExpanded={true}
                 >
-                    <NavItem isActive={route === HubOfHubsRoute.Clusters} to={HubOfHubsRoute.Clusters}>
-                        {isConsoleRoute ? <Link to={HubOfHubsRoute.Clusters}>Clusters</Link> : 'Clusters'}
-                    </NavItem>
-                    <NavItem isActive={route === HubOfHubsRoute.HubClusters} to={HubOfHubsRoute.HubClusters}>
-                        {isConsoleRoute ? <Link to={HubOfHubsRoute.HubClusters}>Hub Clusters</Link> : 'Hub Clusters'}
-                    </NavItem>
+                    {infrastructureIsOpen ?
+                        <NavItem isActive={route === HubOfHubsRoute.HubClusters} to={HubOfHubsRoute.HubClusters}>
+                            {isConsoleRoute ? <Link to={HubOfHubsRoute.HubClusters}>Hub Clusters</Link> : 'Hub Clusters'}
+                        </NavItem>
+                        :
+                        <NavItem isActive={route === HubOfHubsRoute.Clusters} to={HubOfHubsRoute.Clusters}>
+                            {isConsoleRoute ? <Link to={HubOfHubsRoute.Clusters}>Managed Clusters</Link> : 'Managed Clusters'}
+                        </NavItem>
+                    }
                 </NavExpandable>
                 <NavItem isActive={route === HubOfHubsRoute.Governance} to={HubOfHubsRoute.Governance}>
                     Governance
