@@ -378,6 +378,13 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
         return false
     }, [props.route])
 
+    function DropdownItemToggle(isInfrastructureToggle:boolean) {
+        setSwitcherOpen(false)
+        window?.localStorage?.setItem('isInfrastructureOpen', isInfrastructureToggle+'')
+        setInfrastructureOpen(isInfrastructureToggle)
+        window.location.href = HubOfHubsRoute.Welcome
+    }
+
     return (
         <Nav onSelect={() => props.postClick?.()}>
             <div
@@ -398,25 +405,29 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                                 <span className="oc-nav-header__icon">
                                     <ACMIcon></ACMIcon>
                                 </span>
-                                Advanced Cluster Management
+                                {infrastructureIsOpen ?
+                                    "Hub Management"
+                                :
+                                    "Global View"
+                                }
                             </Title>
                         </DropdownToggle>
                     }
                     dropdownItems={[
-                        <DropdownItem onClick={() => {setSwitcherOpen(false); window?.localStorage?.setItem('isInfrastructureOpen', 'false'); setInfrastructureOpen(false)}} key={'acm'}>
+                        <DropdownItem onClick={() => DropdownItemToggle(false)} key={'acm'}>
                             <Title headingLevel="h2" size="md">
                                 <span className="oc-nav-header__icon">
                                     <ACMIcon></ACMIcon>
                                 </span>
-                                <span style={textStyles}>Federated Management</span>
+                                <span style={textStyles}>Global View</span>
                             </Title>
                         </DropdownItem>,
-                        <DropdownItem onClick={() => {setSwitcherOpen(false); window?.localStorage?.setItem('isInfrastructureOpen', 'true'); setInfrastructureOpen(true)}} key={'acm-inf'}>
+                        <DropdownItem onClick={() => DropdownItemToggle(true)} key={'acm-inf'}>
                             <Title headingLevel="h2" size="md">
                                 <span className="oc-nav-header__icon">
                                     <ACMIcon></ACMIcon>
                                 </span>
-                                <span style={textStyles}>Infrastructure Management</span>
+                                <span style={textStyles}>Hub Management</span>
                             </Title>
                         </DropdownItem>,
                         <DropdownItem onClick={() => launchToOCP('?perspective=admin')} key={'administrator'}>
@@ -459,7 +470,7 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                     isExpanded={true}
                 >
                     {infrastructureIsOpen ?
-                        <NavItem isActive={route !== HubOfHubsRoute.Clusters && route !== HubOfHubsRoute.Credentials && route !== HubOfHubsRoute.Governance && route !== HubOfHubsRoute.Welcome } to={HubOfHubsRoute.HubClusters}>
+                        <NavItem isActive={route === HubOfHubsRoute.HubClusters } to={HubOfHubsRoute.HubClusters}>
                             {isConsoleRoute ? <Link to={HubOfHubsRoute.HubClusters}>Hub Clusters</Link> : 'Hub Clusters'}
                         </NavItem>
                         :
