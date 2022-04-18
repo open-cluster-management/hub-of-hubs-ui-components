@@ -330,6 +330,7 @@ const useStyles = makeStyles({
 export enum HubOfHubsRoute {
     Welcome = '/multicloud/welcome',
     Clusters = '/multicloud/clusters',
+    Applications = '/multicloud/applications',
     HubClusters = '/multicloud/hierarchy-clusters',
     Governance = '/multicloud/policies',
     Credentials = '/multicloud/credentials',
@@ -479,6 +480,11 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                         </NavItem>
                     }
                 </NavExpandable>
+                {!infrastructureIsOpen &&
+                    <NavItem isActive={route === HubOfHubsRoute.Applications} to={HubOfHubsRoute.Applications}>
+                        Applications
+                    </NavItem>
+                }
                 <NavItem isActive={route === HubOfHubsRoute.Governance} to={HubOfHubsRoute.Governance}>
                     Governance
                 </NavItem>

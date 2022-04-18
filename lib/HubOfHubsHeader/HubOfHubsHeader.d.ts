@@ -6,6 +6,7 @@ export declare type HubOfHubsHeaderProps = {
 export declare enum HubOfHubsRoute {
     Welcome = "/multicloud/welcome",
     Clusters = "/multicloud/clusters",
+    Applications = "/multicloud/applications",
     HubClusters = "/multicloud/hierarchy-clusters",
     Governance = "/multicloud/policies",
     Credentials = "/multicloud/credentials"
