@@ -488,11 +488,9 @@ function NavExpandableList(props: { route: HubOfHubsRoute; showSwitcher: boolean
                 <NavItem isActive={route === HubOfHubsRoute.Governance} to={HubOfHubsRoute.Governance}>
                     Governance
                 </NavItem>
-                {infrastructureIsOpen &&
-                    <NavItem isActive={route === HubOfHubsRoute.Credentials} to={HubOfHubsRoute.Credentials}>
-                        Credentials
-                    </NavItem>
-                }
+                <NavItem isActive={route === HubOfHubsRoute.Credentials} to={HubOfHubsRoute.Credentials}>
+                    Credentials
+                </NavItem>
             </NavList>
         </Nav>
     )
